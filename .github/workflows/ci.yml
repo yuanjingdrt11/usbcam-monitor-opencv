@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # 无相机的测试：单元测试 + 假相机端到端（扫码→弹窗→落盘）
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Unit tests
+        run: pytest tests/test_units.py -q
+
+      - name: End-to-end (fake camera)
+        run: python tests/test_end_to_end_fakecam.py
+
+      - name: QR robustness
+        run: python tests/test_qr_robustness.py
+
+      - name: CLI smoke test
+        run: |
+          python -m usbcam --help > /dev/null
+          python -m usbcam --list || true

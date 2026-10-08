@@ -1,0 +1,7 @@
+# USB(UVC) 相机过曝光优化 + 参数监视 + 扫码 —— 运行依赖
+#
+# OpenCV 必须是 contrib 版：二维码要用 QRCodeDetectorAruco，一维码要用 barcode 模块。
+# 这两个模块缺失时程序仍可运行（自动降级到 QRCodeDetector / 关闭一维码），识别率会下降。
+opencv-contrib-python>=4.8
+numpy>=1.24
+Pillow>=9.0        # 扫码弹窗渲染中文用；缺失时弹窗自动退回 ASCII 显示

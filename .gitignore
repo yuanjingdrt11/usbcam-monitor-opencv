@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# 测试与缓存
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 运行时产物（不要提交）
+scans/
+snapshots/
+logs/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
