@@ -584,5 +584,4 @@ CI 建议：`pytest tests/test_units.py tests/test_end_to_end_fakecam.py`（都�
 
 [MIT](LICENSE)。
 
-> 发布前请把 `pyproject.toml` 的 `Homepage`、`authors` 与 `LICENSE` 里的版权署名
-> 换成你自己的（当前是占位符）。
+
